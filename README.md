@@ -1,7 +1,7 @@
 # 🚀 Aftab Ahmed Portfolio
 
 <p align="center">
-  <img src="![alt text](image.png)" alt="Portfolio Preview" width="100%" />
+![Portfolio Preview](./public/portfloloi.png)
 </p>
 
 <p align="center">

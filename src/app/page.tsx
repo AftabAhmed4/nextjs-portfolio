@@ -41,7 +41,7 @@ export default function Portfolio() {
       
 
           {/* HERO */}
-<section className="grid lg:grid-cols-2 gap-10 items-center">
+<section className="grid lg:grid-cols-2 gap-10 p-8 items-center">
 
   {/* TEXT */}
   <motion.div
@@ -166,7 +166,7 @@ export default function Portfolio() {
 
 </section>
 {/* STATS */}
-<section className="max-w-6xl mx-auto grid grid-cols-2 gap-4 sm:gap-6">
+<section className="max-w-6xl mx-auto grid grid-cols-2 gap-4 p-20 sm:gap-6">
 
   {stats.map((stat, i) => (
     <div
