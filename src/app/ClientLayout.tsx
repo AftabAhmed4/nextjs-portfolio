@@ -137,27 +137,17 @@ export default function ClientLayout({
         <div className="mt-4 md:mt-6 grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-center">
           
           {/* LEFT COLUMN: Video Player Box */}
-          <div className="md:col-span-6 lg:col-span-7">
-            {/* <div className="relative rounded-xl border border-slate-200 bg-slate-50 p-1 shadow-sm">
-              <iframe
-                className="w-full aspect-video rounded-lg opacity-95 transition-all duration-300 contrast-[1.02]"
-                src="https://www.youtube.com/embed/uteV1D51q74"
-                title="Portfolio Demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div> */}
-            <div className="relative aspect-video rounded-xl border border-slate-200 bg-slate-900 flex items-center justify-center">
-  <div className="text-center">
-    <h3 className="text-white text-2xl font-bold">
-      🚀 Live Demo Coming Soon
-    </h3>
-    <p className="text-slate-300 mt-2">
-      Portfolio demo will be available soon.
-    </p>
+     <div className="md:col-span-6 lg:col-span-7">
+  <div className="relative rounded-xl border border-slate-200 bg-slate-50 p-1 shadow-sm">
+    <iframe
+      className="w-full aspect-video rounded-lg"
+      src="https://www.youtube.com/embed/_SHc6VvUfzM"
+      title="Portfolio Demo"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
   </div>
 </div>
-          </div>
 
           {/* RIGHT COLUMN: Typography, Metrics & Badges Stacked Neatly */}
           <div className="md:col-span-6 lg:col-span-5 flex flex-col justify-between h-full space-y-4 md:space-y-5">
