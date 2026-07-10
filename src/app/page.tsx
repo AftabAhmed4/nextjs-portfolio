@@ -80,7 +80,7 @@ export default function Portfolio() {
   />
 </h2>
 
- <p className="text-slate-500 dark:text-slate-400 leading-8 max-w-2xl mx-auto lg:mx-0 text-base sm:text-lg">
+ <p className="text-slate-500 dark:text-slate-400 leading-8 max-w-2xl mx-auto lg:mx-0 text-base sm:text-md">
 
   <TypeAnimation
     sequence={[
@@ -108,7 +108,7 @@ export default function Portfolio() {
     <div className="flex flex-col sm:flex-row gap-4 pt-2">
   <Link
   href="/contact"
-  className="relative z-50 inline-block cursor-pointer px-7 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 hover:scale-105 transition-all duration-300"
+  className="relative z-50 inline-block cursor-pointer px-4 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 hover:scale-105 transition-all duration-300"
 >
   Hire Me
 </Link>
@@ -151,8 +151,7 @@ export default function Portfolio() {
     ">
 
     <Image
-  src="/aftab.png
-  "
+  src="/aftab.png"
   alt="profile"
   fill
   className="object-cover"
@@ -166,41 +165,44 @@ export default function Portfolio() {
 
 </section>
 {/* STATS */}
-<section className="max-w-6xl mx-auto grid grid-cols-2 gap-4 p-20 sm:gap-6">
+{/* STATS */}
+<section className="max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
 
-  {stats.map((stat, i) => (
-    <div
-      key={i}
-      className="
-        relative overflow-hidden
-        rounded-3xl
-        p-6 sm:p-8
-        bg-white dark:bg-slate-900
-        border border-slate-200 dark:border-slate-700
-        shadow-lg hover:shadow-2xl
-        transition-all duration-500
-        hover:-translate-y-2
-        group
-      "
-    >
-      {/* Background Glow */}
-      <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl group-hover:bg-cyan-500/20 transition-all duration-500" />
+    {stats.map((stat, i) => (
+      <div
+        key={i}
+        className="
+          relative overflow-hidden
+          rounded-3xl
+          p-6 sm:p-8
+          bg-white dark:bg-slate-900
+          border border-slate-200 dark:border-slate-700
+          shadow-lg hover:shadow-2xl
+          transition-all duration-500
+          hover:-translate-y-2
+          group
+        "
+      >
+        {/* Background Glow */}
+        <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl group-hover:bg-cyan-500/20 transition-all duration-500" />
 
-      {/* Number */}
-      <h2 className="text-4xl sm:text-5xl font-extrabold text-blue-600 dark:text-cyan-400">
-        {stat.value}
-      </h2>
+        {/* Number */}
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-600 dark:text-cyan-400">
+          {stat.value}
+        </h2>
 
-      {/* Label */}
-      <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 uppercase tracking-[3px]">
-        {stat.label}
-      </p>
+        {/* Label */}
+        <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 uppercase tracking-wider">
+          {stat.label}
+        </p>
 
-      {/* Bottom Line */}
-      <div className="mt-6 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 group-hover:w-full transition-all duration-500"></div>
-    </div>
-  ))}
+        {/* Bottom Line */}
+        <div className="mt-6 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 group-hover:w-full transition-all duration-500"></div>
+      </div>
+    ))}
 
+  </div>
 </section>
         </div>
       </main>

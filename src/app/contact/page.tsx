@@ -328,50 +328,127 @@ export default function ContactSection() {
     });
   };
 
-  // ✅ SEND MESSAGE
-  const sendMessage = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const [modal, setModal] = useState({
+  open: false,
+  type: "success" as "success" | "error",
+  title: "",
+  message: "",
+});
 
-    if (!form.name || !form.email || !form.message) {
-      alert("Please fill all fields ❌");
-      return;
-    }
+const showModal = (
+  type: "success" | "error",
+  title: string,
+  message: string
+) => {
+  setModal({
+    open: true,
+    type,
+    title,
+    message,
+  });
+};
 
-    setLoading(true);
+  
+  // const sendMessage = async (e: { preventDefault: () => void; }) => {
+  //   e.preventDefault();
 
-    try {
-      const res = await fetch("/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+  //   if (!form.name || !form.email || !form.message) {
+  //     alert("Please fill all fields ❌");
+  //     return;
+  //   }
+
+  //   setLoading(true);
+
+  //   try {
+  //     const res = await fetch("/api/send-email", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(form),
+  //     });
+
+  //     const data = await res.json();
+  //     setLoading(false);
+
+  //     if (data.success) {
+  //       alert("Message Sent Successfully ✅");
+
+  //       // reset form
+  //       setForm({
+  //         name: "",
+  //         email: "",
+  //         message: "",
+  //       });
+  //     } else {
+  //       alert(data.message || "Failed to send message ❌");
+  //     }
+  //   } catch (error) {
+  //     setLoading(false);
+  //     alert("Server Error ❌");
+  //   }
+  // };
+
+  const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  if (!form.name || !form.email || !form.message) {
+    showModal(
+      "error",
+      "Missing Fields",
+      "Please fill in all required fields."
+    );
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    setLoading(false);
+
+    if (res.ok && data.success) {
+      showModal(
+        "success",
+        "Message Sent",
+        data.message || "Your message has been sent successfully."
+      );
+
+      setForm({
+        name: "",
+        email: "",
+        message: "",
       });
-
-      const data = await res.json();
-      setLoading(false);
-
-      if (data.success) {
-        alert("Message Sent Successfully ✅");
-
-        // reset form
-        setForm({
-          name: "",
-          email: "",
-          message: "",
-        });
-      } else {
-        alert(data.message || "Failed to send message ❌");
-      }
-    } catch (error) {
-      setLoading(false);
-      alert("Server Error ❌");
+    } else {
+      showModal(
+        "error",
+        "Oops!",
+        data.message || "Failed to send message."
+      );
     }
-  };
+  } catch {
+    setLoading(false);
+
+    showModal(
+      "error",
+      "Server Error",
+      "Something went wrong. Please try again."
+    );
+  }
+};
 
   return (
     <section
       className={`
       
-        px-6 py-12 
+        px-2 py-12
         lg:ml-72 
         font-sans
         transition-colors duration-300
@@ -382,6 +459,8 @@ export default function ContactSection() {
         }
       `}
     >
+
+
       {/* HEADER */}
       <Topbar 
         title="Contact"
@@ -389,10 +468,93 @@ export default function ContactSection() {
         setDarkMode={setDarkMode}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      {modal.open && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+
+    <div className="w-full max-w-md rounded-3xl bg-white shadow-2xl overflow-hidden animate-[zoom_.25s_ease]">
+
+      <div
+        className={`h-2 ${
+          modal.type === "success"
+            ? "bg-green-500"
+            : "bg-red-500"
+        }`}
+      />
+
+      <div className="p-8 text-center">
+
+        <div
+          className={`mx-auto w-20 h-20 rounded-full flex items-center justify-center ${
+            modal.type === "success"
+              ? "bg-green-100"
+              : "bg-red-100"
+          }`}
+        >
+          {modal.type === "success" ? (
+            <svg
+              className="w-10 h-10 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="w-10 h-10 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          )}
+        </div>
+
+        <h2 className="text-2xl font-bold mt-6">
+          {modal.title}
+        </h2>
+
+        <p className="text-slate-500 mt-3 leading-relaxed">
+          {modal.message}
+        </p>
+
+        <button
+          onClick={() =>
+            setModal((prev) => ({
+              ...prev,
+              open: false,
+            }))
+          }
+          className={`mt-8 w-full py-3 rounded-xl font-semibold text-white transition ${
+            modal.type === "success"
+              ? "bg-green-600 hover:bg-green-700"
+              : "bg-red-600 hover:bg-red-700"
+          }`}
+        >
+          OK
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+)}
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
 
         {/* LEFT PANEL (UNCHANGED UI) */}
-        <div className="relative rounded-3xl p-8 bg-white/70 backdrop-blur-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="relative rounded-3xl p-8 bg-white/70 backdrop-blur-xl border border-slate-200 shadow-sm overflow-hidden mb-8">
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-200/40 rounded-full blur-3xl" />
           <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-200/40 rounded-full blur-3xl" />
 
@@ -412,8 +574,8 @@ export default function ContactSection() {
                 <Mail className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <p className="text-xs text-slate-400">Email</p>
-                <p className="text-xs font-medium">aftabahmedcbspakistan@gmail.com</p>
+                <p className="text-xs text-slate-400 dark:text-black">Email</p>
+                <p className="text-xs font-medium text-slate-900 dark:text-black">aftabahmedcbspakistan@gmail.com</p>
               </div>
             </div>
 
@@ -423,7 +585,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="text-xs text-slate-400">Phone</p>
-                <p className="text-xs font-medium">+92 348 2275246</p>
+                <p className="text-xs font-medium text-slate-900">+92 348 2275246</p>
               </div>
             </div>
 
@@ -433,7 +595,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="text-xs text-slate-400">Location</p>
-                <p className="text-xs font-medium">Karachi, Pakistan</p>
+                <p className="text-xs font-medium text-slate-900">Karachi, Pakistan</p>
               </div>
             </div>
 
@@ -443,9 +605,9 @@ export default function ContactSection() {
         {/* RIGHT FORM (LOGIC ADDED) */}
         <div className="rounded-3xl bg-white border border-slate-200 shadow-sm p-8 py-8  mb-8">
 
-          <h2 className="text-xl font-bold mb-6">
-            Send Message
-          </h2>
+     <h2 className="text-xl font-bold mb-6 text-slate-900">
+  Send Message
+</h2>
 
           <form onSubmit={sendMessage} className="space-y-6">
 
@@ -460,7 +622,7 @@ export default function ContactSection() {
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Enter your name"
-                  className="w-full bg-transparent outline-none text-sm"
+                  className="w-full bg-transparent outline-none text-sm text-slate-600"
                 />
               </div>
             </div>
@@ -476,7 +638,7 @@ export default function ContactSection() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="Enter your email"
-                  className="w-full bg-transparent outline-none text-sm"
+                  className="w-full bg-transparent outline-none text-sm text-slate-600"
                 />
               </div>
             </div>
@@ -492,7 +654,7 @@ export default function ContactSection() {
                   value={form.message}
                   onChange={handleChange}
                   placeholder="Write your message..."
-                  className="w-full bg-transparent outline-none text-sm resize-none"
+                  className="w-full bg-transparent outline-none text-sm resize-none text-slate-600"
                 />
               </div>
             </div>
@@ -501,7 +663,7 @@ export default function ContactSection() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md hover:shadow-xl hover:scale-[1.01] transition disabled:opacity-50"
+              className="w-full flex cursor-pointer items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md hover:shadow-xl hover:scale-[1.01] transition disabled:opacity-50"
             >
               {loading ? (
                 <>
@@ -510,7 +672,7 @@ export default function ContactSection() {
                 </>
               ) : (
                 <>
-                  <Send className="w-4 h-4" />
+                  <Send className="w-4 h-4 cursor-pointer" />
                   Send Message
                 </>
               )}

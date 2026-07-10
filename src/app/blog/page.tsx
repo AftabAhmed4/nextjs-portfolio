@@ -176,7 +176,7 @@ export default function BlogSection(): ReactElement {
         </div>
 
         {/* FEATURED ARTICLE - PREMIUM */}
-     {/* FEATURED ARTICLE - LUXURY EDITORIAL LAYOUT */}
+
 {featuredPost && searchQuery.length === 0 && (
   <div
     onClick={() => setSelectedPost(featuredPost)}

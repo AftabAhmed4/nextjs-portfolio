@@ -354,9 +354,18 @@ export default function Navbar() {
             })}
           </div>
 
- <a
-  href="Aftab_Ahmed_CV.pdf"
+ {/* <a
+ href="Aftab_Ahmed_CV.pdf"
   download
+  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-md hover:shadow-lg active:scale-[0.98]"
+>
+  <Download size={16} />
+  Download CV
+</a> */}
+
+<a
+  href="/Aftab_Ahmed_CV.pdf"
+  download="Aftab_Ahmed_CV.pdf"
   className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-md hover:shadow-lg active:scale-[0.98]"
 >
   <Download size={16} />

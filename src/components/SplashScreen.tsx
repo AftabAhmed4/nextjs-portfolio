@@ -214,6 +214,7 @@
 "use client";
 
 import { Code2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 
 interface SplashScreenProps {
@@ -221,10 +222,26 @@ interface SplashScreenProps {
 }
 
 export default function SplashScreen({ isVisible }: SplashScreenProps) {
+ 
   if (!isVisible) return null;
+  const [showDemoModal, setShowDemoModal] = useState(false);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const timer = setTimeout(() => {
+      setShowDemoModal(true);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [isVisible]);
+
+  if (!isVisible) return null;
+
 
   return (
     <div className="fixed inset-0 z-[99999] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#050816] via-[#0B1120] to-[#09090F] text-white">
+
 
       {/* Background Glow */}
       <div className="absolute -top-24 -left-24 h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-blue-600/20 blur-[100px] sm:blur-[120px] animate-pulse" />

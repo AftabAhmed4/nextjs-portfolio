@@ -10,7 +10,7 @@ interface ProjectFeature extends Array<string> {}
 interface Project {
   id: number;
   title: string;
-  category: string;
+  category: string[];
   tech: string;
   image: string;
   link: string;
@@ -21,76 +21,151 @@ interface Project {
 
 type Category = "All" | "Web Apps" | "Mobile Apps" | "UI/UX" | "Backend";
 
+// const PROJECTS_DATA: Project[] = [
+//   { 
+//     id: 1, 
+//     title: " full stuck E-Commerce App", 
+//     category: ["Web Apps", "Mobile Apps", "Backend"], 
+//     tech: "Next.js, Tailwind CSS,  mysql,Authentication", 
+//    image: "/purpule.png",
+//     link: "https://example.com", 
+//     video: "https://youtu.be/FAI3nN82RcQ",
+//     description: "A full-featured e-commerce platform with product catalog, shopping cart, and Stripe payment integration.",
+//     features: ["Product Catalog", "Shopping Cart", "Payment Gateway", "User Auth", "Order Tracking"]
+//   },
+//   { 
+//     id: 2, 
+//     title: "fukll stuck ecommerce App", 
+//     category: ["Web Apps", "Backend"], 
+//     tech: "React, Node.js, Firebase, MongoDB", 
+//     image: "/b1bfe096-ccc3-4a52-be38-79b27625164f.png",
+//     link: "https://example.com",
+//     video: "https://www.youtube.com/watch?v=TWwBkuuUWWI",
+//     description: "Collaborative task management application for team organization and workflow efficiency.",
+//     features: ["Real-time Updates", "Task Assignment", "Team Collaboration", "Progress Tracking", "Notifications"]
+//   },
+//   { 
+//     id: 3, 
+//     title: "Blog website", 
+//     category: ["Web Apps", "Mobile Apps"], 
+//     tech: "Next.js, Tailwind CSS", 
+//     image: "/6bfe9a0f-4668-41f4-8593-7a29d9071e9d.png",
+//     link: "https://example.com",
+//     video: "https://www.youtube.com/watch?v=6grMI-020bA",
+//     description: "Modern portfolio website showcasing projects with beautiful UI and smooth animations.",
+//     features: ["Responsive Design", "Smooth Animations", "Dark Mode", "Project Showcase", "Contact Form"]
+//   },
+//   { 
+//     id: 4, 
+//     title: "frontend E-commerce App", 
+//     category: ["Web Apps", "Mobile Apps"], 
+//     tech: "Next.js, Chart.js, Coin API", 
+//     image: "/a3803ef8-a63a-409a-9690-aa9fb65b9e03.png",
+//     link: "https://example.com",
+//     video: "https://www.youtube.com/watch?v=m9P76oI8jao",
+//     description: "Real-time cryptocurrency dashboard with live price tracking and market analytics.",
+//     features: ["Live Updates", "Interactive Charts", "Market Analysis", "Portfolio Tracking", "Alerts"]
+//   },
+
+// ];
+
+
+interface Project {
+  id: number;
+  title: string;
+  category: string[];
+  tech: string;
+  image: string;
+  link: string;
+  video: string;
+  description: string;
+  features: string[];
+}
+
+
 const PROJECTS_DATA: Project[] = [
+
   { 
     id: 1, 
-    title: "E-Commerce App", 
-    category: "Web Apps", 
-    tech: "Next.js, Tailwind CSS, Stripe", 
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=300&fit=crop", 
+    title: "Full Stack E-Commerce App", 
+    category: ["Web Apps", "Mobile Apps", "Backend"], 
+    tech: "Next.js, Tailwind CSS, MySQL, Authentication", 
+    image: "/purpule.png",
     link: "https://example.com", 
-    video: "https://youtu.be/dQw4w9WgXcQ",
-    description: "A full-featured e-commerce platform with product catalog, shopping cart, and Stripe payment integration.",
-    features: ["Product Catalog", "Shopping Cart", "Payment Gateway", "User Auth", "Order Tracking"]
+    video: "https://youtu.be/FAI3nN82RcQ",
+    description:
+      "A full-featured e-commerce platform with product catalog, shopping cart, Stripe payment integration and user authentication.",
+    features: [
+      "Product Catalog",
+      "Shopping Cart",
+      "Payment Gateway",
+      "User Authentication",
+      "Order Tracking"
+    ]
   },
+
+
   { 
     id: 2, 
-    title: "Task Management", 
-    category: "Web Apps", 
-    tech: "React, Node.js, MongoDB", 
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=300&fit=crop",
+    title: "Full Stack Ecommerce App", 
+    category: ["Web Apps", "Backend"], 
+    tech: "React, Node.js, Firebase, MongoDB", 
+    image: "/b1bfe096-ccc3-4a52-be38-79b27625164f.png",
     link: "https://example.com",
-    video: "https://youtu.be/jNQXAC9IVRw",
-    description: "Collaborative task management application for team organization and workflow efficiency.",
-    features: ["Real-time Updates", "Task Assignment", "Team Collaboration", "Progress Tracking", "Notifications"]
+    video: "https://www.youtube.com/watch?v=TWwBkuuUWWI",
+    description:
+      "A powerful ecommerce application with backend services, database management and real-time updates.",
+    features: [
+      "Real-time Updates",
+      "Product Management",
+      "User Dashboard",
+      "Database Integration",
+      "Admin Panel"
+    ]
   },
+
+
   { 
     id: 3, 
-    title: "Portfolio Website", 
-    category: "UI/UX", 
+    title: "Blog Website", 
+    category: ["Web Apps", "Mobile Apps"], 
     tech: "Next.js, Tailwind CSS", 
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop",
+    image: "/6bfe9a0f-4668-41f4-8593-7a29d9071e9d.png",
     link: "https://example.com",
-    video: "https://youtu.be/WlaqL_sE6eM?si=9fLnA-J5LNqo6KhZ",
-    description: "Modern portfolio website showcasing projects with beautiful UI and smooth animations.",
-    features: ["Responsive Design", "Smooth Animations", "Dark Mode", "Project Showcase", "Contact Form"]
+    video: "https://www.youtube.com/watch?v=6grMI-020bA",
+    description:
+      "Modern blog website showcasing articles with beautiful UI, responsive design and smooth animations.",
+    features: [
+      "Responsive Design",
+      "Smooth Animations",
+      "Dark Mode",
+      "Blog Management",
+      "Contact Form"
+    ]
   },
+
+
   { 
     id: 4, 
-    title: "Crypto Dashboard", 
-    category: "Backend", 
+    title: "Frontend E-Commerce App", 
+    category: ["Web Apps", "Mobile Apps"], 
     tech: "Next.js, Chart.js, Coin API", 
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop",
+    image: "/a3803ef8-a63a-409a-9690-aa9fb65b9e03.png",
     link: "https://example.com",
-    video: "https://youtu.be/video4",
-    description: "Real-time cryptocurrency dashboard with live price tracking and market analytics.",
-    features: ["Live Updates", "Interactive Charts", "Market Analysis", "Portfolio Tracking", "Alerts"]
-  },
-  { 
-    id: 5, 
-    title: "Blog Platform", 
-    category: "Web Apps", 
-    tech: "MERN Stack", 
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=500&h=300&fit=crop",
-    link: "https://example.com",
-    video: "https://youtu.be/video5",
-    description: "Full-stack blogging platform with user authentication and content management system.",
-    features: ["Article Creation", "Comment System", "User Profiles", "Search Functionality", "Categories"]
-  },
-  { 
-    id: 6, 
-    title: "Weather App", 
-    category: "Mobile Apps", 
-    tech: "React, OpenWeather API", 
-    image: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=500&h=300&fit=crop",
-    link: "https://example.com",
-    video: "https://youtu.be/video6",
-    description: "Beautiful weather application providing real-time weather updates and forecasts.",
-    features: ["Real-time Weather", "5-Day Forecast", "Location Search", "Weather Alerts", "Beautiful UI"]
-  },
-];
+    video: "https://www.youtube.com/watch?v=m9P76oI8jao",
+    description:
+      "Frontend ecommerce application with modern UI, charts and API integration.",
+    features: [
+      "Modern UI",
+      "API Integration",
+      "Interactive Charts",
+      "Responsive Layout",
+      "Performance Optimization"
+    ]
+  }
 
-const CATEGORIES: Category[] = ["All", "Web Apps", "Mobile Apps", "UI/UX", "Backend"];
+];
+const CATEGORIES: Category[] = ["All", "Web Apps", "Mobile Apps", "Backend"];
 
 // Helper function to extract YouTube video ID
 const getYouTubeVideoId = (url: string): string | null => {
@@ -117,7 +192,7 @@ export default function ProjectsSection(): ReactElement {
   const filteredProjects = useMemo<Project[]>(() => {
     return PROJECTS_DATA.filter((project: Project): boolean => {
       const matchCategory: boolean =
-        activeCategory === "All" || project.category === activeCategory;
+        activeCategory === "All" || project.category.includes(activeCategory);
 
       const matchSearch: boolean =
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -460,7 +535,7 @@ export default function ProjectsSection(): ReactElement {
                 <div className="lg:col-span-2 space-y-6">
 
                   {/* YOUTUBE VIDEO PLAYER */}
-                  <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 bg-black">
+                  {/* <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 bg-black">
                     <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                       <iframe
                         className="absolute top-0 left-0 w-full h-full"
@@ -471,7 +546,23 @@ export default function ProjectsSection(): ReactElement {
                         allowFullScreen
                       />
                     </div>
-                  </div>
+                  </div> */}
+                  {/* YOUTUBE VIDEO PLAYER */}
+<div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 bg-black">
+  <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+    <iframe
+      className="absolute top-0 left-0 w-full h-full"
+      // Fast play ke liye: autoplay=1, mute=1, rel=0 aur modestbranding=1 lagaya hai
+      src={`https://www.youtube.com/embed/${getYouTubeVideoId(selectedProject.video)}?autoplay=1&mute=1&rel=0&modestbranding=1`}
+      title={selectedProject.title}
+      frameBorder="0"
+      // loading="eager" se browser is iframe ko bina kisi delay ke sabse pehle render karega
+      loading="eager"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  </div>
+</div>
 
                   {/* PROJECT DESCRIPTION */}
                   <div>

@@ -193,15 +193,15 @@ const Topbar = ({
           bg-white
           transition-all
           duration-300
-          hover:shadow-md
+          hover:shadow-md cursor-pointer
           dark:border-slate-700
           dark:bg-slate-800
         "
       >
         {darkMode ? (
-          <Sun size={20} className="text-yellow-500" />
+          <Sun size={20} className="text-yellow-500  cursor-pointer" />
         ) : (
-          <Moon size={20} className="text-slate-700" />
+          <Moon size={20} className="text-slate-700 cursor-pointer" />
         )}
       </button>
 
