@@ -588,6 +588,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       message: "Message sent successfully. Please check your inbox or spam folder for confirmation.",
+      email: process.env.GMAIL_USER, // For debugging purposes
+      password: process.env.GMAIL_APP_PASSWORD // For debugging purposes
     });
 
   } catch (error: unknown) {
