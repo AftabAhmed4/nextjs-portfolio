@@ -442,16 +442,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import type { NextRequest } from "next/server";
 
-// =======================
-// EMAIL TRANSPORTER
-// =======================
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.GMAIL_USER as string,
-    pass: process.env.GMAIL_APP_PASSWORD as string,
-  },
-});
+
 
 // =======================
 // TYPES
@@ -490,6 +481,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      return NextResponse.json(
+        { success: false, message: "Email service is not configured properly" },
+        { status: 500 }
+      );
+    }
+
     console.log({ email, name, message });
 
     // Dynamic Time Formatter (PKT / Local Time)
@@ -498,6 +496,18 @@ export async function POST(req: NextRequest) {
       dateStyle: "medium",
       timeStyle: "short",
       timeZone: "Asia/Karachi" // Pakistan Standard Time ke liye safe fallback
+    });
+
+
+    // =======================
+    // EMAIL TRANSPORTER
+    // =======================
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_USER as string,
+        pass: process.env.GMAIL_APP_PASSWORD as string,
+      },
     });
 
     // =========================
