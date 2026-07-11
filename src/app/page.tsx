@@ -106,13 +106,45 @@ export default function Portfolio() {
 </p>
 
     <div className="flex flex-col sm:flex-row gap-4 pt-2">
-  <Link
+  {/* <Link
   href="/contact"
   className="relative z-50 inline-block cursor-pointer px-4 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 hover:scale-105 transition-all duration-300"
 >
   Hire Me
+</Link> */}
+<Link
+  href="/contact"
+  className="
+    inline-flex
+    items-center
+    justify-center
+    px-6
+    py-3
+    sm:px-7
+    sm:py-3.5
+    rounded-xl
+    bg-gradient-to-r
+    from-blue-600
+    to-indigo-600
+    text-white
+    font-semibold
+    text-sm
+    sm:text-base
+    shadow-lg
+    hover:from-blue-700
+    hover:to-indigo-700
+    hover:shadow-xl
+    hover:-translate-y-1
+    active:scale-95
+    transition-all
+    duration-300
+    focus:outline-none
+    focus:ring-4
+    focus:ring-blue-500/30
+  "
+>
+  Hire Me
 </Link>
-
 <Link
   href="/projects"
   className="

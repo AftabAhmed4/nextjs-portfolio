@@ -479,21 +479,21 @@ export default function ProjectsSection(): ReactElement {
       {/* PROFESSIONAL YOUTUBE MODAL */}
       {selectedProject && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4"
           onClick={() => setSelectedProject(null)}
         >
           {/* BACKDROP */}
           <div className="
             absolute inset-0 
-            bg-black/60 backdrop-blur-sm
+            bg-black/70 backdrop-blur-sm
             animate-in fade-in duration-300
           " />
 
           {/* MODAL CONTENT */}
           <div 
             className={`
-              relative z-10 w-full max-w-4xl
-              rounded-3xl overflow-hidden
+              relative z-10 w-full h-full
+              overflow-hidden
               shadow-2xl
               animate-in scale-95 fade-in duration-300
               ${
@@ -501,6 +501,7 @@ export default function ProjectsSection(): ReactElement {
                   ? "bg-[#0F172A] border border-slate-700"
                   : "bg-white border border-slate-200"
               }
+              rounded-none
             `}
             onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
           >
@@ -527,9 +528,9 @@ export default function ProjectsSection(): ReactElement {
             </button>
 
             {/* CONTENT SECTION */}
-            <div className={`p-6 sm:p-8 lg:p-10 ${darkMode ? "bg-[#0F172A]" : "bg-white"}`}>
+            <div className={`h-full overflow-y-auto p-4 sm:p-6 lg:p-8 ${darkMode ? "bg-[#0F172A]" : "bg-white"}`}>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 h-full">
 
                 {/* LEFT SIDE - YOUTUBE VIDEO */}
                 <div className="lg:col-span-2 space-y-6">
